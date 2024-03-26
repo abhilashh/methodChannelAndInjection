@@ -49,12 +49,12 @@ class RealQuoteApiProvider implements QuoteApiProvider  {
 
   @override
   Future<List<BirdModel>> getBirds(String env) async {
-    final rep = await locator.get<DioClient>().performCall(requestType: RequestType.get, url: 'https://freetestapi.com/api/v1/birds');
-    print('its.........$rep');
-    HttpUtil dio = HttpUtil();
-    final response  = await dio.get('birds');
-    print(response);
-    List<BirdModel> birds = List<BirdModel>.from(response.map((x) => BirdModel.froJson(x)));
+    // final rep = await locator.get<DioClient>().performCall(requestType: RequestType.get, url: 'https://freetestapi.com/api/v1/birds');
+    // print('its.........$rep');
+    // HttpUtil dio = HttpUtil();
+    // final response  = await dio.get('birds');
+    final response = await locator.get<DioClient>().performCall(requestType: RequestType.get, url: 'https://freetestapi.com/api/v1/birds');
+    List<BirdModel> birds = List<BirdModel>.from(response.data.map((x) => BirdModel.froJson(x)));
     return birds;
   }
 }
